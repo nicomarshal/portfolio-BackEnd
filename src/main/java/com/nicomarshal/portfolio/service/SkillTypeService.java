@@ -4,7 +4,9 @@ import com.nicomarshal.portfolio.model.SkillType;
 import com.nicomarshal.portfolio.repository.ISkillTypeRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SkillTypeService implements ISkillTypeService{
     @Autowired
     private ISkillTypeRepository skillTypeRepository;

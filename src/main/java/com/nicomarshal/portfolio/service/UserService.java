@@ -4,7 +4,9 @@ import com.nicomarshal.portfolio.model.User;
 import com.nicomarshal.portfolio.repository.IUserRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserService implements IUserService {
     @Autowired
     private IUserRepository userRepository;
