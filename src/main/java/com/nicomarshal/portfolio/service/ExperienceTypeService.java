@@ -4,7 +4,9 @@ import com.nicomarshal.portfolio.model.ExperienceType;
 import com.nicomarshal.portfolio.repository.IExperienceTypeRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ExperienceTypeService implements IExperienceTypeService {
     @Autowired
     private IExperienceTypeRepository experienceTypeRepository;

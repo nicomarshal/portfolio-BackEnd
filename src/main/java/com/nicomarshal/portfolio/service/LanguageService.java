@@ -4,7 +4,9 @@ import com.nicomarshal.portfolio.model.Language;
 import com.nicomarshal.portfolio.repository.ILanguageRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class LanguageService implements ILanguageService {
     @Autowired 
     private ILanguageRepository languageRepository;

@@ -4,7 +4,9 @@ import com.nicomarshal.portfolio.model.Role;
 import com.nicomarshal.portfolio.repository.IRoleRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RoleService implements IRoleService {
     @Autowired
     private IRoleRepository roleRepository;
