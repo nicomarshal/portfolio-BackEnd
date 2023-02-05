@@ -1,9 +1,12 @@
 package com.nicomarshal.portfolio.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,20 +24,25 @@ public class Experience {
     private Date finishDate;
     private String description;
     
-    //Foreign Key
-    private Person personId;
-    private ExperienceType typeId;
+    //Bidirectional
+    @ManyToOne (fetch = FetchType.LAZY)
+    @JoinColumn (name = "personId")
+    private Person person;
+    
+    //Bidirectional
+    @ManyToOne (fetch = FetchType.LAZY)
+    @JoinColumn (name = "experienceTypeId")
+    private ExperienceType experienceType;
 
-    public Experience(String logo, String companyName, String job, Date startDate, Date finishDate, String description, Person personId, ExperienceType typeId) {
+    public Experience(Long id, String logo, String companyName, String job, Date startDate, Date finishDate, String description, Person person, ExperienceType experienceType) {
+        this.id = id;
         this.logo = logo;
         this.companyName = companyName;
         this.job = job;
         this.startDate = startDate;
         this.finishDate = finishDate;
         this.description = description;
-        this.personId = personId;
-        this.typeId = typeId;
+        this.person = person;
+        this.experienceType = experienceType;
     }
-
-    
 }

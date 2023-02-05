@@ -1,9 +1,12 @@
 package com.nicomarshal.portfolio.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,18 +24,13 @@ public class Education {
     private Date startDate;
     private Date finishDate;
     
-    //Foreign Key
-    private Person personId;
-    private EducationType typeId;
-
-    public Education(String logo, String instName, String instDescription, String career, Date startDate, Date finishDate, Person personId, EducationType typeId) {
-        this.logo = logo;
-        this.instName = instName;
-        this.instDescription = instDescription;
-        this.career = career;
-        this.startDate = startDate;
-        this.finishDate = finishDate;
-        this.personId = personId;
-        this.typeId = typeId;
-    }   
+    //Bidirectional
+    @ManyToOne (fetch = FetchType.LAZY)
+    @JoinColumn (name = "personId")
+    private Person person;
+    
+    //Bidirectional
+    @ManyToOne (fetch = FetchType.LAZY)
+    @JoinColumn (name = "educationTypeId")
+    private EducationType educationType; 
 }
