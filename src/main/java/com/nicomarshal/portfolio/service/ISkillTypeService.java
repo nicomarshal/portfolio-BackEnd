@@ -1,15 +1,16 @@
 package com.nicomarshal.portfolio.service;
 
-import com.nicomarshal.portfolio.model.SkillType;
+import com.nicomarshal.portfolio.dto.SkillTypeDto;
 import java.util.List;
 
 public interface ISkillTypeService {
+    public List<SkillTypeDto> getSkillTypes();
     
-    public List<SkillType> getSkillTypes();
+    public void createSkillType(SkillTypeDto skillTypeDto);
     
-    public void saveSkillType(SkillType skillType);
+    public void editSkillType(Long id, SkillTypeDto skillTypeDto);
     
     public void deleteSkillType(Long id);
     
-    public SkillType findSkillType(Long id);    
+    public SkillTypeDto findSkillType(Long id);   
 }

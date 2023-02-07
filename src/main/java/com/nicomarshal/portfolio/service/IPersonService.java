@@ -1,18 +1,16 @@
 package com.nicomarshal.portfolio.service;
 
+import com.nicomarshal.portfolio.dto.PersonDto;
 import java.util.List;
-import com.nicomarshal.portfolio.model.Person;
 
 public interface IPersonService {
-    //Método para traer todas las personas
-    public List<Person> getPeople();
+    public List<PersonDto> getPeople();
     
-    //Método para dar de alta una persona
-    public void savePerson(Person person);
+    public void createPerson(PersonDto personDto);
     
-    //Método para eliminar una persona
+    public void editPerson(Long id, PersonDto personDto);
+    
     public void deletePerson(Long id);
     
-    //Método para encontrar una persona
-    public Person findPerson(Long id);
+    public PersonDto findPerson(Long id);
 }

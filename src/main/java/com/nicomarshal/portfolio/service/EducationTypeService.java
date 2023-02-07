@@ -1,7 +1,9 @@
 package com.nicomarshal.portfolio.service;
 
+import com.nicomarshal.portfolio.dto.EducationTypeDto;
 import com.nicomarshal.portfolio.model.EducationType;
 import com.nicomarshal.portfolio.repository.IEducationTypeRepository;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,13 +14,42 @@ public class EducationTypeService implements IEducationTypeService{
     private IEducationTypeRepository educationTypeRepository;
 
     @Override
-    public List<EducationType> getEducationTypes() {
+    public List<EducationTypeDto> getEducationTypes() {
         List<EducationType> listEducationTypes = educationTypeRepository.findAll();
-        return listEducationTypes;
+        
+        List<EducationTypeDto> listEducationTypesDto = new ArrayList<>();
+        
+        for (EducationType educationType : listEducationTypes) {
+            EducationTypeDto educationTypeDto = new EducationTypeDto();
+            
+            //Mapeo
+            educationTypeDto.setType(educationType.getType());
+            educationTypeDto.setDescription(educationType.getDescription());
+            
+            listEducationTypesDto.add(educationTypeDto);
+        }       
+        return listEducationTypesDto;
     }
 
     @Override
-    public void saveEducationType(EducationType educationType) {
+    public void createEducationType(EducationTypeDto educationTypeDto) {
+        EducationType educationType = new EducationType();
+        
+        //Mapeo
+        educationType.setType(educationTypeDto.getType());
+        educationType.setDescription(educationTypeDto.getDescription());
+        
+        educationTypeRepository.save(educationType);
+    }
+    
+    @Override
+    public void editEducationType(Long id, EducationTypeDto educationTypeDto) {
+        EducationType educationType = educationTypeRepository.findById(id).orElse(null);
+        
+        //Mapeo
+        educationType.setType(educationTypeDto.getType());
+        educationType.setDescription(educationTypeDto.getDescription());
+        
         educationTypeRepository.save(educationType);
     }
 
@@ -28,8 +59,15 @@ public class EducationTypeService implements IEducationTypeService{
     }
 
     @Override
-    public EducationType findEducationType(Long id) {
+    public EducationTypeDto findEducationType(Long id) {
         EducationType educationType = educationTypeRepository.findById(id).orElse(null);
-        return educationType;
-    }    
+        
+        EducationTypeDto educationTypeDto = new EducationTypeDto();
+        
+        //Mapeo
+        educationTypeDto.setType(educationType.getType());
+        educationTypeDto.setDescription(educationType.getDescription());
+        
+        return educationTypeDto;
+    }   
 }

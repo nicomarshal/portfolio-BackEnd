@@ -1,14 +1,16 @@
 package com.nicomarshal.portfolio.service;
 
-import com.nicomarshal.portfolio.model.ExperienceType;
+import com.nicomarshal.portfolio.dto.ExperienceTypeDto;
 import java.util.List;
 
 public interface IExperienceTypeService {
-    public List<ExperienceType> getExperienceTypes();
+    public List<ExperienceTypeDto> getExperienceTypes();
     
-    public void saveExperienceType(ExperienceType experienceType);
+    public void createExperienceType(ExperienceTypeDto experienceTypeDto);
+    
+    public void editExperienceType(Long id, ExperienceTypeDto experienceTypeDto);
     
     public void deleteExperienceType(Long id);
     
-    public ExperienceType findExperienceType(Long id);    
+    public ExperienceTypeDto findExperienceType(Long id);   
 }

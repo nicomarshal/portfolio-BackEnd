@@ -1,15 +1,17 @@
 package com.nicomarshal.portfolio.service;
 
+import com.nicomarshal.portfolio.dto.RoleDto;
 import java.util.List;
-import com.nicomarshal.portfolio.model.Role;
 
 public interface IRoleService {
     
-    public List<Role> getRoles();
+    public List<RoleDto> getRoles();
     
-    public void saveRole(Role role);
+    public void createRole(RoleDto roleDto);
+    
+    public void editRole(Long id, RoleDto roleDto);
     
     public void deleteRole(Long id);
     
-    public Role findRole(Long id);
+    public RoleDto findRole(Long id);
 }
