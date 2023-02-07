@@ -1,14 +1,16 @@
 package com.nicomarshal.portfolio.service;
 
-import com.nicomarshal.portfolio.model.User;
+import com.nicomarshal.portfolio.dto.UserDto;
 import java.util.List;
 
 public interface IUserService {
-    public List<User> getUsers();
+    public List<UserDto> getUsers();
     
-    public void saveUser(User user);
+    public void createUser(UserDto userDto);
+    
+    public void editUser(Long id, UserDto userDto);
     
     public void deleteUser(Long id);
     
-    public User findUser(Long id);    
+    public UserDto findUser(Long id);    
 }

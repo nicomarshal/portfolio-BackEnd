@@ -1,14 +1,16 @@
 package com.nicomarshal.portfolio.service;
 
-import com.nicomarshal.portfolio.model.Project;
+import com.nicomarshal.portfolio.dto.ProjectDto;
 import java.util.List;
 
 public interface IProjectService {
-    public List<Project> getProjects();
+    public List<ProjectDto> getProjects();
     
-    public void saveProject(Project project);
+    public void createProject(ProjectDto projectDto);
+    
+    public void editProject(Long id, ProjectDto projectDto);
     
     public void deleteProject(Long id);
     
-    public Project findProject(Long id);    
+    public ProjectDto findProject(Long id);   
 }

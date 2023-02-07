@@ -1,7 +1,9 @@
 package com.nicomarshal.portfolio.service;
 
+import com.nicomarshal.portfolio.dto.SkillTypeDto;
 import com.nicomarshal.portfolio.model.SkillType;
 import com.nicomarshal.portfolio.repository.ISkillTypeRepository;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,13 +14,42 @@ public class SkillTypeService implements ISkillTypeService{
     private ISkillTypeRepository skillTypeRepository;
 
     @Override
-    public List<SkillType> getSkillTypes() {
+    public List<SkillTypeDto> getSkillTypes() {
         List<SkillType> listSkillTypes = skillTypeRepository.findAll();
-        return listSkillTypes;
+        
+        List<SkillTypeDto> listSkillTypesDto = new ArrayList<>();
+        
+        for (SkillType skillType : listSkillTypes) {
+            SkillTypeDto skillTypeDto = new SkillTypeDto();
+            
+            //Mapeo
+            skillTypeDto.setType(skillType.getType());
+            skillTypeDto.setDescription(skillType.getDescription());
+            
+            listSkillTypesDto.add(skillTypeDto);
+        }       
+        return listSkillTypesDto;
     }
 
     @Override
-    public void saveSkillType(SkillType skillType) {
+    public void createSkillType(SkillTypeDto skillTypeDto) {
+        SkillType skillType = new SkillType();
+        
+        //Mapeo
+        skillType.setType(skillTypeDto.getType());
+        skillType.setDescription(skillTypeDto.getDescription());
+        
+        skillTypeRepository.save(skillType);
+    }
+    
+    @Override
+    public void editSkillType(Long id, SkillTypeDto skillTypeDto) {
+        SkillType skillType = skillTypeRepository.findById(id).orElse(null);
+        
+        //Mapeo
+        skillType.setType(skillTypeDto.getType());
+        skillType.setDescription(skillTypeDto.getDescription());
+        
         skillTypeRepository.save(skillType);
     }
 
@@ -28,8 +59,15 @@ public class SkillTypeService implements ISkillTypeService{
     }
 
     @Override
-    public SkillType findSkillType(Long id) {
+    public SkillTypeDto findSkillType(Long id) {
         SkillType skillType = skillTypeRepository.findById(id).orElse(null);
-        return skillType;
-    }
+        
+        SkillTypeDto skillTypeDto = new SkillTypeDto();
+        
+        //Mapeo
+        skillTypeDto.setType(skillType.getType());
+        skillTypeDto.setDescription(skillType.getDescription());
+        
+        return skillTypeDto;
+    }   
 }
