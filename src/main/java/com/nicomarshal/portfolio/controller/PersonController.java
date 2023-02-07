@@ -1,6 +1,6 @@
 package com.nicomarshal.portfolio.controller;
 
-import com.nicomarshal.portfolio.model.Person;
+import com.nicomarshal.portfolio.dto.PersonDto;
 import com.nicomarshal.portfolio.service.IPersonService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,37 +21,20 @@ public class PersonController {
     
     @GetMapping("/person")
     @ResponseBody
-    public List<Person> getPeople() {
+    public List<PersonDto> getPeople() {
         return personService.getPeople();
     }
     
     @PostMapping("/person")
-    public String createPerson(@RequestBody Person person){
-        personService.savePerson(person);
+    public String createPerson(@RequestBody PersonDto personDto){
+        personService.createPerson(personDto);
         return "La persona fue creada correctamente";
     }
     
     @PutMapping("/person/{id}")
-    public String editPerson(@PathVariable Long id,
-                         @RequestParam String profileImg,
-                         @RequestParam String name,
-                         @RequestParam String surname,
-                         @RequestParam String profession,
-                         @RequestParam String aboutMe){
+    public String editPerson(@PathVariable Long id, @RequestBody PersonDto personDto){
         
-        //Busco la persona en cuestión
-        Person person = personService.findPerson(id);
-        
-        //Esto tambien pude ir en service para desacoplar
-        //mejor aun el codigo en un nuevo metodo
-        person.setProfileImg(profileImg);
-        person.setName(name);
-        person.setSurname(surname);
-        person.setProfession(profession);
-        person.setAboutMe(aboutMe);
-        
-        personService.savePerson(person);
-        
+        personService.editPerson(id, personDto);
         return "La persona fue modificada correctamente";
     }    
     
@@ -64,7 +46,7 @@ public class PersonController {
     
     @GetMapping("/person/{id}")
     @ResponseBody
-    public Person findPerson(@PathVariable Long id) {
+    public PersonDto findPerson(@PathVariable Long id) {
         return personService.findPerson(id);
     }
 }
