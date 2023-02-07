@@ -24,6 +24,9 @@ public class EducationType {
     @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "educationType")
     private List<Education> listEducation;
 
+    public EducationType() {
+    }
+    
     public EducationType(Long id, String type, String description, List<Education> listEducation) {
         this.id = id;
         this.type = type;

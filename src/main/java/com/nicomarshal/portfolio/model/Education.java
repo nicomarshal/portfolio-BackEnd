@@ -32,5 +32,20 @@ public class Education {
     //Bidirectional
     @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn (name = "educationTypeId")
-    private EducationType educationType; 
+    private EducationType educationType;
+
+    public Education() {
+    }
+
+    public Education(Long id, String logo, String instName, String instDescription, String career, Date startDate, Date finishDate, Person person, EducationType educationType) {
+        this.id = id;
+        this.logo = logo;
+        this.instName = instName;
+        this.instDescription = instDescription;
+        this.career = career;
+        this.startDate = startDate;
+        this.finishDate = finishDate;
+        this.person = person;
+        this.educationType = educationType;
+    }
 }
