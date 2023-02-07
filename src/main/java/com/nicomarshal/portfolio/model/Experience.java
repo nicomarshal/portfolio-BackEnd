@@ -34,6 +34,9 @@ public class Experience {
     @JoinColumn (name = "experienceTypeId")
     private ExperienceType experienceType;
 
+    public Experience() {
+    }
+    
     public Experience(Long id, String logo, String companyName, String job, Date startDate, Date finishDate, String description, Person person, ExperienceType experienceType) {
         this.id = id;
         this.logo = logo;

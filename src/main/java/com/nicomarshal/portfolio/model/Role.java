@@ -23,4 +23,14 @@ public class Role {
     //Bidirectional
     @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "role")
     private List<User> listUsers;
+
+    public Role() {
+    }
+
+    public Role(Long id, String type, String description, List<User> listUsers) {
+        this.id = id;
+        this.type = type;
+        this.description = description;
+        this.listUsers = listUsers;
+    }
 }

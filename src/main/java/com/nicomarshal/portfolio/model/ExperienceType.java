@@ -24,6 +24,9 @@ public class ExperienceType {
     @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "experienceType")
     private List<Experience> listExperiences;
 
+    public ExperienceType() {
+    }
+    
     public ExperienceType(Long id, String type, String description, List<Experience> listExperiences) {
         this.id = id;
         this.type = type;

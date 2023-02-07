@@ -33,22 +33,35 @@ public class Person {
     private User user;
     
     //Bidirectional
-    @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "person")
+    @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "person")
     private List<Experience> listExperiences;
 
     //Bidirectional
-    @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "person")
+    @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "person")
     private List<Education> listEducation;   
     
     //Bidirectional
-    @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "person")
+    @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "person")
     private List<Skill> listSkills;
     
     //Bidirectional
-    @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "person")
+    @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "person")
     private List<Project> listProjects;
-    
-    //Bidirectional
-    @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "person")
-    private List<Language> listLanguages;
+
+    public Person() {
+    }
+
+    public Person(Long id, String profileImg, String name, String surname, String profession, String aboutMe, User user, List<Experience> listExperiences, List<Education> listEducation, List<Skill> listSkills, List<Project> listProjects) {
+        this.id = id;
+        this.profileImg = profileImg;
+        this.name = name;
+        this.surname = surname;
+        this.profession = profession;
+        this.aboutMe = aboutMe;
+        this.user = user;
+        this.listExperiences = listExperiences;
+        this.listEducation = listEducation;
+        this.listSkills = listSkills;
+        this.listProjects = listProjects;
+    }
 }

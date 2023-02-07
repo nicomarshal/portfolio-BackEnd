@@ -29,6 +29,9 @@ public class Skill {
     @JoinColumn (name = "skillTypeId")  
     private SkillType skillType;
 
+    public Skill() {
+    }
+    
     public Skill(Long id, String name, int percentage, Person person, SkillType skillType) {
         this.id = id;
         this.name = name;

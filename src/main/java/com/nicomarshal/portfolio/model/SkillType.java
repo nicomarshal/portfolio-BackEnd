@@ -24,6 +24,9 @@ public class SkillType {
     @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "skillType")
     private List<Skill> listSkills;
 
+    public SkillType() {
+    }
+    
     public SkillType(Long id, String type, String description, List<Skill> listSkills) {
         this.id = id;
         this.type = type;

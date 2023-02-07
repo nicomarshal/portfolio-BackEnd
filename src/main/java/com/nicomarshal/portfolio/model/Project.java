@@ -29,6 +29,9 @@ public class Project {
     @JoinColumn (name = "personId")
     private Person person;  
 
+    public Project() {
+    }
+    
     public Project(Long id, String name, String description, Date startDate, Date finishDate, String images, String url, Person person) {
         this.id = id;
         this.name = name;
