@@ -1,6 +1,6 @@
 package com.nicomarshal.portfolio.controller;
 
-import com.nicomarshal.portfolio.model.Role;
+import com.nicomarshal.portfolio.dto.RoleDto;
 import com.nicomarshal.portfolio.service.IRoleService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,32 +21,21 @@ public class RoleController {
     
     @GetMapping("/role")
     @ResponseBody
-    public List<Role> getRoles() {
+    public List<RoleDto> getRoles() {
         return roleService.getRoles();
     }
     
     @PostMapping("/role")
-    public String createRole(@RequestBody Role role){
-        roleService.saveRole(role);
-        return "El rol fue creado correctamente";
+    public String createRole(@RequestBody RoleDto roleDto){
+        roleService.createRole(roleDto);
+        return "El usuario fue creado correctamente";
     }
     
     @PutMapping("/role/{id}")
-    public String editRole(@PathVariable Long id,
-                         @RequestParam String type,
-                         @RequestParam String description){
+    public String editRole(@PathVariable Long id, @RequestBody RoleDto roleDto){
         
-        //Busco el role en cuestión
-        Role role = roleService.findRole(id);
-        
-        //Esto tambien pude ir en service para desacoplar
-        //mejor aun el codigo en un nuevo metodo
-        role.setType(type);
-        role.setDescription(description);
-        
-        roleService.saveRole(role);
-        
-        return "El rol fue modificado correctamente";
+        roleService.editRole(id, roleDto);
+        return "El usuario fue modificado correctamente";
     }    
     
     @DeleteMapping("/role/{id}")
@@ -58,7 +46,7 @@ public class RoleController {
     
     @GetMapping("/role/{id}")
     @ResponseBody
-    public Role findRole(@PathVariable Long id) {
+    public RoleDto findRole(@PathVariable Long id) {
         return roleService.findRole(id);
     }
 }
